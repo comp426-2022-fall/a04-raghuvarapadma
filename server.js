@@ -18,14 +18,14 @@ app.get('/app/', (req, res) => {
 });
 
 app.get('/app/roll/', (req, res) => {
-	res.send(JSON.stringfy(roll(6,2,1)));
+	res.send(roll(6,2,1));
 });
 
 app.post('/app/roll/', (req,res) => {
 	let sides = req.body.sides;
 	let dice = req.body.dice;
 	let rolls = req.body.rolls;
-	console.log(roll(sides,dice,rolls));
+	res.send(roll(sides,dice,rolls));
 });
 
 app.get('/app/roll/:sides/', (req, res) => {
@@ -47,7 +47,7 @@ app.get('/app/roll/:sides/:dice/:rolls/', (req, res) => {
 });
 
 app.use(function(req, res) {
-     res.send("404 NOT FOUND");
+    res.send("404 NOT FOUND");
 });
 
 
