@@ -25,25 +25,25 @@ app.post('/app/roll/', (req,res) => {
 	let sides = req.body.sides;
 	let dice = req.body.dice;
 	let rolls = req.body.rolls;
-	console.log(JSON.stringfy(roll(sides,dice,rolls)));
+	console.log(roll(sides,dice,rolls));
 });
 
 app.get('/app/roll/:sides/', (req, res) => {
 	let sides = req.params.sides;
-   	res.send(JSON.stringfy(roll(sides,2,1)));
+   	res.send(roll(sides,2,1));
 });
 
 app.get('/app/roll/:sides/:dice/', (req, res) => {
 	let sides = req.params.sides;
 	let dice = req.params.dice;
-	res.send(JSON.stringfy(roll(sides,dice,1)));
+	res.send(roll(sides,dice,1));
 });
 
 app.get('/app/roll/:sides/:dice/:rolls/', (req, res) => {
 	let sides = req.params.sides;
 	let dice = req.params.dice;
 	let rolls = req.params.rolls;
-	res.send(JSON.stringfy(roll(sides,dice,rolls)));
+	res.send(roll(sides,dice,rolls));
 });
 
 app.use(function(req, res) {
