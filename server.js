@@ -22,27 +22,27 @@ app.get('/app/roll/', (req, res) => {
 });
 
 app.post('/app/roll/', (req,res) => {
-	let sides = req.body.sides;
-	let dice = req.body.dice;
-	let rolls = req.body.rolls;
+	let sides = parseInt(req.body.sides);
+	let dice = parseInt(req.body.dice);
+	let rolls = parseInt(req.body.rolls);
 	res.send(roll(sides,dice,rolls));
 });
 
 app.get('/app/roll/:sides/', (req, res) => {
-	let sides = req.params.sides;
+	let sides = parseInt(req.params.sides);
    	res.send(roll(sides,2,1));
 });
 
 app.get('/app/roll/:sides/:dice/', (req, res) => {
-	let sides = req.params.sides;
-	let dice = req.params.dice;
+	let sides = parseInt(req.params.sides);
+	let dice = parseInt(req.params.dice);
 	res.send(roll(sides,dice,1));
 });
 
 app.get('/app/roll/:sides/:dice/:rolls/', (req, res) => {
-	let sides = req.params.sides;
-	let dice = req.params.dice;
-	let rolls = req.params.rolls;
+	let sides = parseInt(req.params.sides);
+	let dice = parseInt(req.params.dice);
+	let rolls = parseInt(req.params.rolls);
 	res.send(roll(sides,dice,rolls));
 });
 
