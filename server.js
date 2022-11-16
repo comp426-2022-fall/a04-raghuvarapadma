@@ -3,6 +3,7 @@ import minimist from "minimist"
 import { roll } from "./lib/roll.js"
 
 const app = express();
+app.use(express.json());
 app.use(express.urlencoded({extended: true}))
 const args = minimist(process.argv.slice(2));
 
