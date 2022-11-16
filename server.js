@@ -1,7 +1,9 @@
 import express from "express";
 import minimist from "minimist"
+import { roll } from "./lib/roll.js"
 
 const app = express();
+app.use(express.urlencoded({extended: true}))
 const args = minimist(process.argv.slice(2));
 
 let port = 5000;
@@ -11,21 +13,41 @@ if ("port" in args) {
 }
 
 app.get('/app/', (req, res) => {
-	res.sendStatus(200);
+	res.send('200 OK');
 });
 
 app.get('/app/roll/', (req, res) => {
-    res.send('Hello World, from express');
+	res.send(roll(6,2,1));
+});
+
+app.post('/app/roll/', (req,res) => {
+	let sides = req.body.sides;
+	let dice = req.body.dice;
+	let rolls = req.body.rolls;
+	console.log(roll(sides,dice,rolls));
 });
 
 app.get('/app/roll/:sides/', (req, res) => {
-    res.send('Hello World, from express');
+	let sides = req.params.sides;
+   	res.send(roll(sides,2,1));
 });
 
 app.get('/app/roll/:sides/:dice/', (req, res) => {
-    res.send('Hello World, from express');
+	let sides = req.params.sides;
+	let dice = req.params.dice;
+	res.send(roll(sides,dice,1));
 });
 
 app.get('/app/roll/:sides/:dice/:rolls/', (req, res) => {
-    res.send('Hello World, from express');
+	let sides = req.params.sides;
+	let dice = req.params.dice;
+	let rolls = req.params.rolls;
+	res.send(roll(sides,dice,rolls));
 });
+
+app.use(function(req, res) {
+     res.send("404 NOT FOUND");
+});
+
+
+app.listen(port);
